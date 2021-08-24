@@ -55,14 +55,14 @@
 
 ## destinations テーブル
 
-| Column        | Type    | Options     |
-| ------------- | ------- | ----------- |
-| postal_code   | integer | null: false |
-| prefecture_id | integer | null: false |
-| city          | string  | null: false |
-| addresses     | string  | null: false |
-| phone number  | string  | null: false |
-| building      | string  |             |
+| Column        | Type        | Options                        |
+| ------------- | ----------- | ------------------------------ |
+| postal_code   | integer     | null: false                    |
+| prefecture_id | integer     | null: false                    |
+| city          | string      | null: false                    |
+| addresses     | string      | null: false                    |
+| phone number  | string      | null: false                    |
+| purchase      | references  | null: false, foreign_key: true |
 
 
 ### Association
