@@ -7,16 +7,27 @@ class User < ApplicationRecord
   validates :nickname, presence: true
   validates :birth_date, presence: true
 
-  with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/, message: 'is invalid. Input full-width characters' } do
-    validates :last_name
-    validates :first_name
-  end
+  validates :last_name, presence: true
+  validates :last_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/, message: 'is invalid. Input full-width characters' }, if: lambda { |u|
+                                                                                                                         u.last_name.present?
+                                                                                                                       }
 
-  with_options presence: true, format: { with: /\A[ァ-ヶー－]+\z/, message: 'is invalid. Input full-width katakana characters' } do
-    validates :last_name_kana
-    validates :first_name_kana
-  end
+  validates :first_name, presence: true
+  validates :first_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/, message: 'is invalid. Input full-width characters' }, if: lambda { |u|
+                                                                                                                          u.first_name.present?
+                                                                                                                        }
 
+  validates :last_name_kana, presence: true
+  validates :last_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'is invalid. Input full-width katakana characters' }, if: lambda { |u|
+                                                                                                                                  u.last_name_kana.present?
+                                                                                                                                }
+
+  validates :first_name_kana, presence: true
+  validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'is invalid. Input full-width katakana characters' }, if: lambda { |u|
+                                                                                                                                   u.first_name_kana.present?
+                                                                                                                                 }
   validates :password,
-            format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: 'is invalid. Include both letters and numbers' }
+            format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: 'is invalid. Include both letters and numbers' }, if: lambda { |u|
+                                                                                                                                   u.password.present?
+                                                                                                                                 }
 end
