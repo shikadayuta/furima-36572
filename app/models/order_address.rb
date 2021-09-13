@@ -7,11 +7,21 @@ class OrderAddress
   with_options presence: true do
     validates :item_id
     validates :user_id
-    validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/ }
+    validates :post_code
     validates :city
     validates :home_num
-    validates :tel, format: {with: /\A[0-9]{11}\z/ }
+    validates :tel
   end
+
+  validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/ }, if: lambda { |u|
+    u.post_code.present?
+  }
+
+  validates :tel, format: {with: /\A[0-9]{11}\z/ }, if: lambda { |u|
+    u.tel.present?
+  }
+
+
 
   def save
     order = Order.create(item_id: item_id, user_id: user_id)
