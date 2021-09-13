@@ -40,7 +40,7 @@
 - has_one :purchase
 - belongs_to :user
 
-## purchases テーブル
+## orders テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
@@ -51,9 +51,9 @@
 
 - belongs_to :item
 - belongs_to :user
-- has_one :destination
+- has_one :address
 
-## destinations テーブル
+## addresses テーブル
 
 | Column        | Type        | Options                        |
 | ------------- | ----------- | ------------------------------ |
@@ -62,10 +62,10 @@
 | city          | string      | null: false                    |
 | addresses     | string      | null: false                    |
 | phone number  | string      | null: false                    |
-| purchase      | references  | null: false, foreign_key: true |
+| order         | references  | null: false, foreign_key: true |
 
 
 ### Association
 
-- belongs_to :purchase
+- belongs_to :order
 

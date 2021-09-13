@@ -19,7 +19,7 @@
         <%= @item.item_price%>
       </span>
       <span class="item-postage">
-        <%= @item.item_shipping_fee_status.name %>
+        <%= @item.item_shipping_fee_status.name%>
       </span>
     </div>
 
@@ -27,8 +27,8 @@
     <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
     <p class="or-text">or</p>
     <%= link_to "削除", item_path(@item.id), method: :delete, class:"item-destroy" %>
-    <% elsif user_signed_in? && current_user.id != @item.user_id %>%>
-    <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
+    <% elsif user_signed_in? && current_user.id != @item.user_id %>
+    <%= link_to "購入画面に進む", item_orders_path(@item), method: :get,class:"item-red-btn"%>
     <% end %>
 
     <div class="item-explain-box">
