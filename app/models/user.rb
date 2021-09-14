@@ -31,4 +31,5 @@ class User < ApplicationRecord
                                                                                                                                    u.password.present?
                                                                                                                                  }
   has_many :items
+  has_many :orders
 end
