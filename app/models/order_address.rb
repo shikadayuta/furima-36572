@@ -14,23 +14,18 @@ class OrderAddress
     validates :token
   end
 
-  validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/ }, if: lambda { |u|
+  validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }, if: lambda { |u|
     u.post_code.present?
   }
 
-  validates :tel, format: {with: /\A[0-9]{11}\z/ }, if: lambda { |u|
+  validates :tel, format: { with: /\A[0-9]{11}\z/ }, if: lambda { |u|
     u.tel.present?
   }
-
-
 
   def save
     order = Order.create(item_id: item_id, user_id: user_id)
 
-    Address.create(post_code: post_code, prefecture_id: prefecture_id, city: city, home_num: home_num, building_name: building_name, tel: tel, order_id: order.id)
-
+    Address.create(post_code: post_code, prefecture_id: prefecture_id, city: city, home_num: home_num,
+                   building_name: building_name, tel: tel, order_id: order.id)
   end
-
-
-
 end
