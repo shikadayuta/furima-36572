@@ -18,7 +18,7 @@ class OrderAddress
     u.post_code.present?
   }
 
-  validates :tel, format: { with: /\A[0-9]{11}\z/ }, if: lambda { |u|
+  validates :tel, format: { with: /\A\d{10,11}\z/ }, if: lambda { |u|
     u.tel.present?
   }
 
